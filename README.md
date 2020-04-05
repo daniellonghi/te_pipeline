@@ -194,25 +194,25 @@ Also, for automation purposes, some scripts have been developed that are in the 
 - In this way, we obtain the total set of TEs, however they still contain annotation overlap and redundancy. To work around this problem, we developed a script that calculates the overlap and removes duplications without losing information (cpp.01). Partial overlays are treated in such a way that you do not lose part of the sequence or give preference to one or the other. Partial sequences are extracted in order to preserve the smallest (Start Sequence) and largest (End Sequence) geonumeric position of the overlap.
     - Make sure to be at athaliana folder
 
-        //code 
-        mv TEAnnotation.gff3 original_TEAnnotation.gff3
-        sort -k1,1 -k4,4n original_TEAnnotation.gff3 > teste1.gff3
-        bedtools merge -i teste1.gff3 -s -c 7,1 -o distinct,count > ts.bed
-        awk -F"\t" '{print $1 "\t" "." "\t" "." "\t" $2+1 "\t" $3 "\t" "." "\t" $4 "\t" "." "\t" "." "\t" $5}' ts.bed > ts.gff3
-        sed -e 's/SINE2/SINE/g' original_TEAnnotation.gff3 > teste1.gff3
-        sed -e 's/|/\//g' teste1.gff3 > teste2.gff3
-        sed -e 's/tRNA-L1/tRNA/g' teste2.gff3 > teste1.gff3
-        sed -e 's/Ginger2-TDD/Ginger/g' teste1.gff3 > teste2.gff3
-        sed -e 's/MULE-MuDR/MuLE-MuDR/g' teste2.gff3 > teste1.gff3
-        sed -e 's/RTE-BovB/RTE/g' teste1.gff3 > teste2.gff3
-        sed -e 's/noCat/Unknown/g' teste2.gff3 > teste1.gff3
-        sed -e 's/SINE\/TRIM/TRIM/g' teste1.gff3 > teste2.gff3
-        sed -e 's/Transposable/Unknown/g' teste2.gff3 > teste1.gff3
-        sed -e 's/rRNA/SINE\/rRNA/g' teste1.gff3 > teste2.gff3
-        sed -e 's/snRNA/SINE\/snRNA/g' teste2.gff3 > teste1.gff3
-        bedtools intersect -a ts.gff3 -b teste1.gff3 -wa -wb -s > intersect.gff3
-        perl ../codestoformat/formatOutputCoordenation.pl ts.gff3 intersect.gff3 1
-        //code
+            //code 
+            mv TEAnnotation.gff3 original_TEAnnotation.gff3
+            sort -k1,1 -k4,4n original_TEAnnotation.gff3 > teste1.gff3
+            bedtools merge -i teste1.gff3 -s -c 7,1 -o distinct,count > ts.bed
+            awk -F"\t" '{print $1 "\t" "." "\t" "." "\t" $2+1 "\t" $3 "\t" "." "\t" $4 "\t" "." "\t" "." "\t" $5}' ts.bed > ts.gff3
+            sed -e 's/SINE2/SINE/g' original_TEAnnotation.gff3 > teste1.gff3
+            sed -e 's/|/\//g' teste1.gff3 > teste2.gff3
+            sed -e 's/tRNA-L1/tRNA/g' teste2.gff3 > teste1.gff3
+            sed -e 's/Ginger2-TDD/Ginger/g' teste1.gff3 > teste2.gff3
+            sed -e 's/MULE-MuDR/MuLE-MuDR/g' teste2.gff3 > teste1.gff3
+            sed -e 's/RTE-BovB/RTE/g' teste1.gff3 > teste2.gff3
+            sed -e 's/noCat/Unknown/g' teste2.gff3 > teste1.gff3
+            sed -e 's/SINE\/TRIM/TRIM/g' teste1.gff3 > teste2.gff3
+            sed -e 's/Transposable/Unknown/g' teste2.gff3 > teste1.gff3
+            sed -e 's/rRNA/SINE\/rRNA/g' teste1.gff3 > teste2.gff3
+            sed -e 's/snRNA/SINE\/snRNA/g' teste2.gff3 > teste1.gff3
+            bedtools intersect -a ts.gff3 -b teste1.gff3 -wa -wb -s > intersect.gff3
+            perl ../codestoformat/formatOutputCoordenation.pl ts.gff3 intersect.gff3 1
+            //code
 
     - Two files will be generated "TEAnnotationlFinal-1.gff3" and "TEAnnotationCompleto-1.gff3". Basically both have the same content.
 
