@@ -140,9 +140,9 @@ Also, for automation purposes, some scripts have been developed that are in the 
 
     	//code
     	cd mitehunter
-	    for filename in *.fa; do
-	        perl ../..//codestoformat/formatOutputMITE.pl ${filename}
-	    done
+        for filename in *.fa; do
+            perl ../..//codestoformat/formatOutputMITE.pl ${filename}
+        done
 	    //code
 
 	    - A MITE.gff3 file will be generated.
@@ -164,8 +164,8 @@ Also, for automation purposes, some scripts have been developed that are in the 
 
    		//code
    		cd helitronscanner
-	    perl ../../codestoformat/formatOutputHelitron.pl output.ext.hel.fa +
-	    perl ../../codestoformat/formatOutputHelitron.pl output_reverse.ext.hel.fa -
+        perl ../../codestoformat/formatOutputHelitron.pl output.ext.hel.fa +
+        perl ../../codestoformat/formatOutputHelitron.pl output_reverse.ext.hel.fa -
 	    //code
 
 	    - A Helitrons.gff3 file will be generated.
@@ -182,9 +182,9 @@ Also, for automation purposes, some scripts have been developed that are in the 
 	- Make sure to be at athaliana folder
 
 	//code
-	cat LTR_Retriever.gff3 RepeatModeler.gff3 RepeatMasker.gff3 NonLTR.gff3 MITE.gff3 Helitrons.gff3 RepeatScout.gff3 > TEAnnotation.asd
-	#### Remova alguns tipos de TEs restante
-	sed -e 's/\?//g' TEsannotation.asd > TEAnnotation.gff3
+    cat LTR_Retriever.gff3 RepeatModeler.gff3 RepeatMasker.gff3 NonLTR.gff3 MITE.gff3 Helitrons.gff3 RepeatScout.gff3 > TEAnnotation.asd
+    #### Remove some remaining TEs
+    sed -e 's/\?//g' TEsannotation.asd > TEAnnotation.gff3
     sed -i '' "/SSR/d" TEAnnotation.gff3
     sed -i '' "/Satellite/d" TEAnnotation.gff3
     sed -i '' "/Simple_repeat/d" TEAnnotation.gff3
@@ -213,10 +213,10 @@ Also, for automation purposes, some scripts have been developed that are in the 
     sed -e 's/rRNA/SINE\/rRNA/g' teste1.gff3 > teste2.gff3
     sed -e 's/snRNA/SINE\/snRNA/g' teste2.gff3 > teste1.gff3
 
-	bedtools intersect -a ts.gff3 -b teste1.gff3 -wa -wb -s > intersect.gff3
+    bedtools intersect -a ts.gff3 -b teste1.gff3 -wa -wb -s > intersect.gff3
 
-	perl ../codestoformat/formatOutputCoordenation.pl ts.gff3 intersect.gff3 1
-	//code
+    perl ../codestoformat/formatOutputCoordenation.pl ts.gff3 intersect.gff3 1
+    //code
 
 	- Two files will be generated "TEAnnotationlFinal-1.gff3" and "TEAnnotationCompleto-1.gff3". Basically both have the same content.
 
