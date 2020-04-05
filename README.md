@@ -196,11 +196,9 @@ Also, for automation purposes, some scripts have been developed that are in the 
 
         //code 
         mv TEAnnotation.gff3 original_TEAnnotation.gff3
-
         sort -k1,1 -k4,4n original_TEAnnotation.gff3 > teste1.gff3
         bedtools merge -i teste1.gff3 -s -c 7,1 -o distinct,count > ts.bed
         awk -F"\t" '{print $1 "\t" "." "\t" "." "\t" $2+1 "\t" $3 "\t" "." "\t" $4 "\t" "." "\t" "." "\t" $5}' ts.bed > ts.gff3
-
         sed -e 's/SINE2/SINE/g' original_TEAnnotation.gff3 > teste1.gff3
         sed -e 's/|/\//g' teste1.gff3 > teste2.gff3
         sed -e 's/tRNA-L1/tRNA/g' teste2.gff3 > teste1.gff3
@@ -212,9 +210,7 @@ Also, for automation purposes, some scripts have been developed that are in the 
         sed -e 's/Transposable/Unknown/g' teste2.gff3 > teste1.gff3
         sed -e 's/rRNA/SINE\/rRNA/g' teste1.gff3 > teste2.gff3
         sed -e 's/snRNA/SINE\/snRNA/g' teste2.gff3 > teste1.gff3
-
         bedtools intersect -a ts.gff3 -b teste1.gff3 -wa -wb -s > intersect.gff3
-
         perl ../codestoformat/formatOutputCoordenation.pl ts.gff3 intersect.gff3 1
         //code
 
